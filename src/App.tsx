@@ -4,7 +4,6 @@ import FileUpload from './components/FileUpload';
 import JsonDisplay from './components/JsonDisplay';
 import WordCloudComponent from './components/WordCloud';
 import IdInput from './components/IdInput';
-import styles from './App.module.css';
 
 function App() {
     const [id, setId] = useState<string | null>(null);
@@ -60,7 +59,7 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <h1>Word Cloud App</h1>
-                <div className={styles.fileUploadContainer}>
+                <div className="fileUploadContainer">
                     <FileUpload
                         id={id}
                         setId={setId}
@@ -69,7 +68,7 @@ function App() {
                         setWordCounts={setWordCounts}
                     />
                 </div>
-                <div className={styles.idInputContainer}>
+                <div className="idInputContainer">
                     <IdInput
                         key={id || 'initial'}
                         onIdSubmit={handleIdSubmit}
