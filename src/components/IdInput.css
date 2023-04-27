@@ -1,0 +1,43 @@
+/* IdInput.css */
+.id-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.id-input-label {
+    display: flex;
+    margin-right: 4px;
+    align-items: center;
+    justify-content: center;
+}
+
+.id-input-field {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 4px 8px;
+    margin-right: 8px;
+}
+
+.id-input-submit {
+    font-size: 14px;
+    padding: 3px 14px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.id-input-submit:hover {
+    background-color: #3e8e41;
+}
+
+.error-message {
+    color: red;
+    margin-top: 8px;
+    margin-left: 5px;
+    width: 100%;
+}
