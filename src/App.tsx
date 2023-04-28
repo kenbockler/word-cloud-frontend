@@ -73,7 +73,7 @@ function App() {
                     const response = await fetch(`http://localhost:8080/api/textfiles/${id}/wordcounts`);
                     if (response.ok) {
                         const data = await response.json();
-                        setWordCounts(data.wordCounts);
+                        setWordCounts(data);
                     }
                 } catch (error) {
                     console.error('Error fetching word counts:', error);
@@ -109,7 +109,7 @@ function App() {
                 ) : wordCounts ? (
                     <>
                         <WordCloudComponent wordCounts={wordCounts} />
-                        <JsonDisplay data={wordCounts} title="Word Counts" />
+                        <JsonDisplay data={wordCounts} title="Word Counts JSON" />
                     </>
                 ) : null}
             </header>
