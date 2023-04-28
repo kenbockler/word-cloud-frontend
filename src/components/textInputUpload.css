@@ -1,0 +1,16 @@
+.textInputUpload {
+    display: flex;
+    flex-direction: column;
+}
+
+.textInput {
+    width: 100%;
+    height: 150px;
+    resize: none;
+    margin-bottom: 1rem;
+}
+
+.disabledButton {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

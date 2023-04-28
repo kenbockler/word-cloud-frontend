@@ -4,6 +4,7 @@ import FileUpload from './components/FileUpload';
 import JsonDisplay from './components/JsonDisplay';
 import WordCloudComponent from './components/WordCloud';
 import IdInput from './components/IdInput';
+import TextInputUpload from './components/TextInputUpload';
 
 function App() {
     const [id, setId] = useState<string | null>(null);
@@ -37,6 +38,34 @@ function App() {
     }
     };
 
+    const handleTextSubmit = async (text: string) => {
+        setLoading(true);
+        try {
+            const formData = new FormData();
+            const file = new Blob([text], { type: 'text/plain' });
+            formData.append('file', file, 'file.txt');
+
+            const response = await fetch('http://localhost:8080/api/textfiles', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setId(data.id);
+                setUploadStatus(data.status);
+                setWordCounts(data.wordCounts);
+            } else {
+                throw new Error('An error occurred while uploading the text.');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred while uploading the text.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
         const fetchWordCounts = async () => {
             if (id && uploadStatus === 'COMPLETED') {
@@ -67,6 +96,7 @@ function App() {
                         setUploadStatus={setUploadStatus}
                         setWordCounts={setWordCounts}
                     />
+                    <TextInputUpload onTextSubmit={handleTextSubmit} />
                 </div>
                 <div className="idInputContainer">
                     <IdInput
