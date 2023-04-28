@@ -11,6 +11,7 @@ function App() {
     const [uploadStatus, setUploadStatus] = useState<string | null>(null);
     const [wordCounts, setWordCounts] = useState<{ [word: string]: number } | null>(null);
     const [loading, setLoading] = useState(false);
+    const [json, setjson] = useState<{ [word: string]: number } | null>(null);
 
     const handleIdSubmit = async (submittedId: string) => {
         setLoading(true);
@@ -73,7 +74,9 @@ function App() {
                     const response = await fetch(`http://localhost:8080/api/textfiles/${id}/wordcounts`);
                     if (response.ok) {
                         const data = await response.json();
-                        setWordCounts(data);
+                        console.log(response);
+                        setWordCounts(data.wordCounts);
+                        setjson(data);
                     }
                 } catch (error) {
                     console.error('Error fetching word counts:', error);
@@ -109,7 +112,7 @@ function App() {
                 ) : wordCounts ? (
                     <>
                         <WordCloudComponent wordCounts={wordCounts} />
-                        <JsonDisplay data={wordCounts} title="Word Counts JSON" />
+                        <JsonDisplay data={json} title="Word Counts JSON" />
                     </>
                 ) : null}
             </header>
