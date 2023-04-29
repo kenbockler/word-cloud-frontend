@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './JsonDisplay.css';
 
 interface JsonDisplayProps {
-    data: object;
+    data: { [word: string]: number } | null;
     title?: string;
 }
 
@@ -21,8 +21,8 @@ const JsonDisplay: React.FC<JsonDisplayProps> = ({ data, title }) => {
         <div className="json-display-container">
             {title && <h3>{title}</h3>}
             <pre className="json-display">
-        <code>{JSON.stringify(data, null, 2)}</code>
-      </pre>
+                <code>{JSON.stringify(data, null, 2)}</code>
+            </pre>
             <button className="json-copy-button" onClick={handleCopyClick}>
                 {copyStatus}
             </button>
